@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import GameBox from './component/GameBox';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='gameBoard-container'>
+        <p>TIC TAC TOE</p>
+        <div className='gameBoard'> {/* 게임판 (300x300 크기) */}
+          <GameBox /> {/* 상자한칸, 값 -> 코드 너무 길어져서 컴포넌트로 뺌 */}
+          <GameBox />
+          <GameBox />
+          <GameBox />
+          <GameBox />
+          <GameBox />
+          <GameBox />
+          <GameBox />
+          <GameBox />
+        </div>
+      </div>
     </div>
   );
 }
