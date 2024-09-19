@@ -38,3 +38,31 @@ body {
     font-weight: bold;
     font-size: 34px;
 }
+
+.gameBoard-result {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #ff36ab;
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 20px;
+    text-align: start;
+}
+
+.gameBoard-result button {
+    position: relative;
+    margin-top: 10px;
+    width: 30%;
+    padding: 10px 20px;
+    background-color: #ff36ab;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.gameBoard-result button:hover {
+    background-color: #9c2169;
+    border: 1px dashed #fff;
+}
