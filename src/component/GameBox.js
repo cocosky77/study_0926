@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./GameBox.css"
 
 const GameBox = ({value, onBoxClick}) => {
@@ -28,7 +27,6 @@ export default GameBox;
  * 일괄적으로 처리를 하기 위해 onBoxClick()을 만들어서 호출
  * 
  * 부모 컴포넌트(App)의 <GameBox />에서 onBoxClick()와 isClick()을 연결
- * 연결 
  * 
  * 기존 isClick()와 다르게 수정된 isClick()은 box[i]로 모든 상자를 업데이트할 수 있도록 수정
  * 
@@ -36,8 +34,7 @@ export default GameBox;
  * 클릭해서 X가 놓이면 그 다음 클릭은 무조건 O가 되어야 함(교차 반복)
  * 
  * X혹은 O이 연속해서 3개가 되면 게임 끝 => 게임판 아래에 우승자를 표시
- * 9칸이 다참(승패 결정X) => 게임판 아래에 "무승부"라고 표시
- * 
+ * 9칸이 다참(승패 결정X) => 게임판 아래에 "무승부(It's a DRAW!)"라고 표시
  * 
  * 
  */
