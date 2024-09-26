@@ -34,7 +34,7 @@ function App() {
   const current = history[history.length - 1]; // 현재 상태의 배열(가장 최근 상태)
   const winner = calculateWinner(current.square); // 현재 상태의 우승자
 
-  const isClick = (i) => {
+  const handleClick = (i) => {
     console.log("history", history); // 클릭 > 업데이트되는 history 상태
 
     const copyBox = current.square.slice(); // 현재 상태의 배열 복사본(가장 최근 상태 복사본)
@@ -52,6 +52,17 @@ function App() {
     setNextBox(!nextBox); // true, false 값이 반전되고 state가 저장됨
     setTravel(history.length); // 현재 길이 저장(즉 travel에 배열 길이가 저장됨)
   };
+
+  const movesBtn = history.map((value, index) => {
+    return (
+      <li key={index}>
+        <button onClick={() => timeTravel(index)}>
+          {index ? `${index}로 이동` : `처음으로 이동`}
+          {/* 0은 falsy한 값이기 때문 */}
+        </button>
+      </li>
+    );
+  });
 
   let isDraw = true; // null이 없는 경우에만 true가 됨
   let result;
@@ -78,7 +89,8 @@ function App() {
   const timeTravel = (i) => {
     setTravel(i); // 이동하려는 i로 설정하기
     setHistory(history.slice(0, i + 1));
-    setNextBox(!nextBox); // X, O 값 교차 => 한 단계씩 과거로 가기 때문
+    setNextBox(i % 2 === 0); // X, O 값 교차 => 한 단계씩 과거로 가기 때문
+
     // const travel = history[history] - current;
     //  = current.square.slice(); // 현재
 
@@ -114,15 +126,42 @@ function App() {
         <p>TIC TAC TOE</p>
         {/* 게임판 (300x300 크기) */}
         <div className="gameBoard">
-          <GameBox value={current.square[0]} onBoxClick={() => isClick(0)} />
-          <GameBox value={current.square[1]} onBoxClick={() => isClick(1)} />
-          <GameBox value={current.square[2]} onBoxClick={() => isClick(2)} />
-          <GameBox value={current.square[3]} onBoxClick={() => isClick(3)} />
-          <GameBox value={current.square[4]} onBoxClick={() => isClick(4)} />
-          <GameBox value={current.square[5]} onBoxClick={() => isClick(5)} />
-          <GameBox value={current.square[6]} onBoxClick={() => isClick(6)} />
-          <GameBox value={current.square[7]} onBoxClick={() => isClick(7)} />
-          <GameBox value={current.square[8]} onBoxClick={() => isClick(8)} />
+          <GameBox
+            value={current.square[0]}
+            onBoxClick={() => handleClick(0)}
+          />
+          <GameBox
+            value={current.square[1]}
+            onBoxClick={() => handleClick(1)}
+          />
+          <GameBox
+            value={current.square[2]}
+            onBoxClick={() => handleClick(2)}
+          />
+          <GameBox
+            value={current.square[3]}
+            onBoxClick={() => handleClick(3)}
+          />
+          <GameBox
+            value={current.square[4]}
+            onBoxClick={() => handleClick(4)}
+          />
+          <GameBox
+            value={current.square[5]}
+            onBoxClick={() => handleClick(5)}
+          />
+          <GameBox
+            value={current.square[6]}
+            onBoxClick={() => handleClick(6)}
+          />
+          <GameBox
+            value={current.square[7]}
+            onBoxClick={() => handleClick(7)}
+          />
+          <GameBox
+            value={current.square[8]}
+            onBoxClick={() => handleClick(8)}
+          />
         </div>
         <div className="gameBoard-result">
           <div>{result}</div>
@@ -130,11 +169,12 @@ function App() {
           <button onClick={reset}>Reset</button>
         </div>
       </div>
-      <div className="gameBoard-button">
-        <button onClick={() => timeTravel(travel - 1)}>Go to back!</button>
+      <ol className="gameBoard-button">
+        {/* <button onClick={() => timeTravel(travel - 1)}>Go to back!</button>
         {/* <button onClick={() => timeTravel(travel - 2)}>Go to back!</button>
         <button onClick={() => timeTravel(travel - 3)}>Go to back!</button> */}
-      </div>
+        {movesBtn}
+      </ol>
     </div>
   );
 }
